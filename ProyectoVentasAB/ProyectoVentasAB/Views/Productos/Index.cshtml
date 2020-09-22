@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProyectoVentasAB.Models.tblProductos>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="col-12">
+
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h1 class="text-center align-content-end">Productos</h1>
+        </div>
+
+        <div class="card-body">
+            <p>
+                <a asp-action="Create" class="btn btn-success">Agregar</a>
+            </p>
+            <table class="table table-responsive-lg table-active table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreProducto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaVencimiento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdCategoria)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreProducto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @foreach (var valor in ViewBag.Categoria)
+                                {
+                                    @if (item.IdCategoria == valor.IdCategoria)
+                                    {
+                                        @valor.NombreCategoria;
+                                    }
+                                }
+
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdProducto" class="btn btn-warning ">Editar</a> |
+                                @*<a asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-info ">Detalles</a> |*@
+                                <a asp-action="Delete" asp-route-id="@item.IdProducto" class="btn btn-danger ">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

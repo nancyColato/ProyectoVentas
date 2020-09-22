@@ -1,0 +1,50 @@
+﻿@model ProyectoVentasAB.Models.tblProductos
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="col-6 offset-3">
+    <div class="card">
+        <div class="card-header bg-danger">
+            <h5 class="card-title text-center">Eliminar Producto</h5>
+        </div>
+        <div class="card-body">
+            <dl>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.NombreProducto)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.NombreProducto)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.FechaVencimiento)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.FechaVencimiento)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.Descripcion)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.IdCategoria)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @*@Html.DisplayFor(model => model.IdCategoria)*@
+                    @ViewBag.IdCategoria
+                </dd>
+            </dl>
+        </div>
+        <form asp-action="Delete" class="card-footer">
+            <h6>Seguro de eliminar este registro?</h6>
+            <input type="hidden" asp-for="IdProducto" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-warning">Regresar!</a>
+        </form>
+
+
+    </div>
+</div>

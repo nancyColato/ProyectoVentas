@@ -1,0 +1,69 @@
+﻿@model ProyectoVentasAB.Models.tblVentas
+
+@{
+    ViewData["Title"] = "Venta";
+}
+
+<
+<div class="col-6 offset-3">
+    <div class="card">
+        <div class="card-header bg-danger">
+            <h5 class="card-title text-center">Eliminar Venta</h5>
+        </div>
+        <div class="card-body">
+            <dl>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.FechaVenta)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.FechaVenta)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.Cantidad)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Precio)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.Precio)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.SubTotal)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.SubTotal)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.IdProducto)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.IdProducto)
+                </dd>
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.IdTienda)
+                </dt>
+                <dd class="col-md-5 col-sm-6">
+                    @Html.DisplayFor(model => model.IdTienda)
+                </dd>
+            </dl>
+        </div>
+        <form asp-action="Delete" class="card-footer">
+            <h6>Seguro de eliminar este registro?</h6>
+            <input type="hidden" asp-for="IdVenta" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-warning">Regresar!</a>
+        </form>
+
+
+    </div>
+</div>
+

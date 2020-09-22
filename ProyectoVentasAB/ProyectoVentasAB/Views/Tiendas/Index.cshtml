@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoVentasAB.Models.tblTiendas>
+
+@{
+    ViewData["Title"] = "Tiendas";
+}
+
+<div class="col-12">
+
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h1 class="text-center align-content-end">Tiendas</h1>
+        </div>
+
+        <div class="card-body">
+            <p>
+                <a asp-action="Create" class="btn btn-success">Agregar</a>
+            </p>
+            <table class="table table-responsive-lg table-active table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreTienda)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Direccion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefono)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Encargado)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreTienda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Direccion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefono)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Encargado)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdTienda" class="btn btn-warning ">Editar</a> |
+                                @*<a asp-action="Details" asp-route-id="@item.IdTienda" class="btn btn-info ">Detalles</a> |*@
+                                <a asp-action="Delete" asp-route-id="@item.IdTienda" class="btn btn-danger ">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
