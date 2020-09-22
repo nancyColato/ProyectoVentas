@@ -16,30 +16,32 @@
             </p>
             <table class="table table-responsive-lg table-active table-striped">
                 <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FechaVenta)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Cantidad)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Precio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SubTotal)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Total)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IdProducto)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IdTienda)
-                    </th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaVenta)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cantidad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Precio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SubTotal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Total)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdProducto)
+                        </th>
+                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdTienda)
+                        </th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
@@ -68,9 +70,6 @@
                                         @valor.NombreProducto;
                                     }
                                 }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cantidad)
                             </td>
                             <td>
                                 @foreach (var valor in ViewBag.Tienda)

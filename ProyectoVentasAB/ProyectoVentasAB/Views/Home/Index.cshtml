@@ -47,27 +47,25 @@
                     <tr>
                         @{
 
+                          foreach (var v in ViewBag.TopVentas)
+                          {
 
-                            foreach (var v in ViewBag.TopVentas)
-                            {
-                               
-                                    for (int i = 1; i <= 3; i++)
-                                    {
+
                                         <td>
-                                            Venta #@i
+                                            Venta 
                                             <br />
                                             <hr />
                                             Tienda: @v.IdTienda <br />
                                             Fecha: @v.FechaVenta
                                             Producto:  @v.IdProducto
                                             Cantidad: @v.Cantidad
-                                            Subtotal: $ @v.SubTotal
+                                            Stotal: $ @v.SubTotal
                                             <hr />
-                                            Total: $ @v.Total;
+                                            Total: $ @v.Total
 
                                         </td>
 
-                                    }
+                                    
                               
                             }
                         }

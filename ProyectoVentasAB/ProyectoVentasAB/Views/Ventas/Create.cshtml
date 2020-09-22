@@ -60,11 +60,17 @@
                                 <td>
                                     <input type="text" placeholder="Dato" name="dato" id="dato" class="form-control" readonly />
 
-                                    <input type="number" placeholder="cantidad" name="cantidad" id="cantidad" class="form-control" />
+                                    <input type="number" placeholder="cantidad" name="cantidad" id="cantidad" asp-for="Cantidad" class="form-control" />
+
+                                  @*  <input type="hidden" placeholder="cantidadTotal" name="cantidadTotal" id="cantidadTotal" asp-for="Cantidad" class="form-control" />*@
+                                    <span asp-validation-for="Cantidad" class="text-danger"></span>
                                 </td>
 
                                 <td>
-                                    <input type="number" placeholder="Precio" name="precio" id="precio" class="form-control" />
+                                    <input type="number" placeholder="Precio" name="precio" id="precio"  asp-for="Precio" class="form-control" />
+
+                                    @*<input type="hidden" placeholder="PrecioT" name="precioT" id="precioT" asp-for="Precio" class="form-control" />*@
+                                    <span asp-validation-for="Precio" class="text-danger"></span>
 
                                     <input id="btnEnviar" class="btn btn-primary form-control" name="Enviar" value="Enviar" />
                                 </td>
@@ -119,8 +125,10 @@
                     <div class="form-group">
                         <input type="hidden" asp-for="SubTotal" id="subTotal" readonly />
                         <span asp-validation-for="SubTotal" class="text-danger"></span>
-                        <input type="hidden" placeholder="PrecioT" name="precioT" id="precioT" asp-for="Precio" class="form-control" />
-                        <input type="hidden" placeholder="cantidadTotal" name="cantidadTotal" id="cantidadTotal" asp-for="Cantidad" class="form-control" />
+                        @*<input type="hidden" placeholder="PrecioT" name="precioT" id="PrecioT" asp-for="Precio" class="form-control" readonly />
+                        <span asp-validation-for="Precio" class="text-danger"></span>
+                        <input type="hidden" placeholder="cantidadTotal" name="cantidadTotal" id="cantidadTotal" asp-for="Cantidad" class="form-control" readonly />
+                        <span asp-validation-for="Cantidad" class="text-danger"></span>*@
                     </div>
 
                 </div>
@@ -135,7 +143,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    <script type="text/javascript">
+<script type="text/javascript">
         //cargar la fecha actual
         window.onload = function () {
             var fecha = new Date(); //Fecha actual
@@ -185,15 +193,16 @@
                     $("#dato").val("");
                     $("#cantidad").val("");
                     $("#precio").val("");
+
                     var total = parseFloat(subtt1) + parseFloat(subtotal);
                     $("#subt1").val(total)
                     $("#total").val(total)
                     var sTotal = parseFloat(subtotal)
                     $("#subTotal").val(sTotal)
-                    var cantT = parseFloat(cantidad);
-                    $("#cantidadTotal").val(cantT)
-                    var precioT = parseFloat(precio);
-                    $("#precioT").val(precioT)
+                    //var cantT = cantidad
+                    //$("#cantidadTotal").val(cantT)
+                    //var precioT = precio
+                    //$("#PrecioT").val(precioT)
                 }
             });
             //Elimnar filas
@@ -208,6 +217,32 @@
                 //removiendo fila
                 $(this).parents('tr').remove();
             });
+
+            @*$("#btnEnviarF").click(function () {
+                 //creando detalleCompra
+                        $(".id").parent("tr").find("td:eq(0)").each(function () {
+                            var columna = $(this).parents('tr');
+                            $("#idPro").val( columna.find("td:eq(0)").text());
+                            var Nombre = columna.find("td:eq(1)").text();
+                            $("#cantidadTotal").val( columna.find("td:eq(2)").text())
+                            $("#PrecioT").val(columna.find("td:eq(3)").text());
+                            var Total = columna.find("td:eq(4)").text();
+                            //var TotalP = columna.find("td:eq(5)").text();
+                            var urlDetalle = '@Url.Action("DetallePrimaria", "Home")';
+                            var dataDetalle = { idP: idProducto, nombre: Nombre, cantidad: Cantidad, precio: Precio, stotal: Total };
+
+                            $.post(urlDetalle, dataDetalle)
+                                .done(function (data) {
+                                })
+                                .fail(function (data) {
+                                    console.log("Error: " + data.responseText);
+                                }).
+                                always(function () {
+                                });
+
+                        });
+            });*@
+
         });
-    </script>
+</script>
 }
