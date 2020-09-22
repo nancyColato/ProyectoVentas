@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProyectoVentasAB.Models.tblCategorias>
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<div class="col-12">
+
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h1 class="text-center align-content-end">Categorías</h1>
+        </div>
+
+        <div class="card-body">
+            <p>
+                <a asp-action="Create" class="btn btn-success">Agregar</a>
+            </p>
+            <table class="table table-responsive-lg table-active table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreCategoria)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreCategoria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdCategoria" class="btn btn-warning ">Editar</a> |
+                                @*<a asp-action="Details" asp-route-id="@item.IdCategoria" class="btn btn-info ">Detalles</a> |*@
+                                <a asp-action="Delete" asp-route-id="@item.IdCategoria" class="btn btn-danger ">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
