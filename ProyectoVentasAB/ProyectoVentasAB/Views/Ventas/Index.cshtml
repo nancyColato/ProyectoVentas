@@ -15,6 +15,7 @@
                 <a asp-action="Create" class="btn btn-success">Agregar</a>
             </p>
             <table class="table table-responsive-lg table-active table-striped">
+                <thead>
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.FechaVenta)
@@ -81,7 +82,7 @@
                                 }
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.IdVenta" class="btn btn-warning ">Editar</a> |
+                                @*<a asp-action="Edit" asp-route-id="@item.IdVenta" class="btn btn-warning ">Editar</a> |*@
                                 @*<a asp-action="Details" asp-route-id="@item.IdVenta" class="btn btn-info ">Detalles</a> |*@
                                 <a asp-action="Delete" asp-route-id="@item.IdVenta" class="btn btn-danger ">Eliminar</a>
                             </td>

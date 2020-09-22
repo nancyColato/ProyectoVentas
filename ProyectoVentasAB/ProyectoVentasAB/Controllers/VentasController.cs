@@ -28,127 +28,55 @@ namespace ProyectoVentasAB.Controllers
             return View(await _context.Ventas.ToListAsync());
         }
 
-        // GET: Ventas/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+    // GET: Ventas/Details/5
+    //public async Task<IActionResult> Details(int? id)
+    //{
+    //  if (id == null)
+    //  {
+    //    return NotFound();
+    //  }
 
-        //    var tblVentas = await _context.Ventas
-        //        .FirstOrDefaultAsync(m => m.IdVenta == id);
-        //    if (tblVentas == null)
-        //    {
-        //        return NotFound();
-        //    }
+    //  var tblVentas = await _context.Ventas
+    //      .FirstOrDefaultAsync(m => m.IdVenta == id);
+    //  if (tblVentas == null)
+    //  {
+    //    return NotFound();
+    //  }
 
-        //    return View(tblVentas);
-        //}
+    //  return View(tblVentas);
+    //}
 
-        // GET: Ventas/Create
-        
-        public IActionResult Create()
+    // GET: Ventas/Create
+
+    public IActionResult Create()
         {
 
-            ViewBag.Producto =  _context.Productos.ToList();
-            ViewBag.Tienda =  _context.Tiendas.ToList();
-            return View();
+          ViewBag.Tienda = _context.Tiendas.ToList();
+          ViewBag.Producto = _context.Productos.ToList();
+          ViewData["IdTienda"] = new SelectList(_context.Tiendas, "IdTienda", "NombreTienda");
+          return View();
         }
 
     // POST: Ventas/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to, for 
     // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Create([Bind("IdVenta,FechaVenta,Cantidad,Precio,SubTotal,Total,IdProducto,IdTienda")] tblVentas tblVentas)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        _context.Add(tblVentas);
-    //        await _context.SaveChangesAsync();
-    //        return RedirectToAction(nameof(Index));
-    //    }
-    //    return View(tblVentas);
-    //}
-
-    // GET: Ventas/Edit/5
-
         [HttpPost]
-        public async Task<IActionResult> Create(int id, int codigo, DateTime fecha, int cantidad, int idP, float precio, float stotal)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("IdVenta,FechaVenta,Cantidad,Precio,SubTotal,Total,IdProducto,IdTienda")] tblVentas tblVentas)
         {
-          try
+          if (ModelState.IsValid)
           {
-
-
-            tblVentas venta = new tblVentas();
-            venta.IdTienda = id;
-            venta.IdVenta = codigo;
-            venta.FechaVenta = fecha;
-            venta.IdProducto = idP;
-            venta.Cantidad = cantidad;
-            venta.SubTotal = precio;
-            venta.Total = stotal;
-
-            _context.Add(venta);
+            _context.Add(tblVentas);
             await _context.SaveChangesAsync();
-            return Json(true);
+            return RedirectToAction(nameof(Index));
           }
-          catch (Exception e)
-          {
-            Console.WriteLine(e.Message);
-            return Json(false);
-          }
+          ViewBag.Tienda = _context.Tiendas.ToList();
+          ViewBag.Producto = _context.Productos.ToList();
+          ViewData["IdTienda"] = new SelectList(_context.Tiendas, "IdTienda", "NombreTienda");
+          return View(tblVentas);
         }
-        //public async Task<IActionResult> Edit(int? id)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return NotFound();
-        //        }
 
-        //        var tblVentas = await _context.Ventas.FindAsync(id);
-        //        if (tblVentas == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        return View(tblVentas);
-        //    }
-
-        // POST: Ventas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("IdVenta,FechaVenta,Cantidad,Precio,SubTotal,Total,IdProducto,IdTienda")] tblVentas tblVentas)
-        //{
-        //    if (id != tblVentas.IdVenta)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(tblVentas);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!tblVentasExists(tblVentas.IdVenta))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(tblVentas);
-        //}
+       
 
         // GET: Ventas/Delete/5
         

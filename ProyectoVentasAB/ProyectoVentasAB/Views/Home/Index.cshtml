@@ -1,8 +1,84 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row col-12">
+            <div class="card col-md-4 col-sm-12 ">
+                <div class="card-body alert-primary ">
+                    <h3 class="text-center card-title col-12">Categorías</h3>
+
+                    <hr />
+                    <p class="text-center card-subtitle">Vendidas</p>
+                    <br />
+                    <h1 class="text-center">@ViewBag.ConsultarC</h1>
+                </div>
+            </div>
+            <div class="card col-md-4 col-sm-12 ">
+                <div class="card-body alert-warning">
+                    <h3 class="text-center card-title">Ventas</h3>
+
+
+                    <hr />
+                    <p class="text-center card-subtitle">Totales</p>
+                    <br />
+                    <h1 class="text-center">$ @ViewBag.VentasTotales</h1>
+                </div>
+            </div>
+            <div class="card col-md-4 col-sm-12 ">
+                <div class="card-body alert-danger">
+                    <h3 class="text-center card-title">Productos</h3>
+
+                    <hr />
+                    <p class="text-center card-subtitle">Vendidos</p>
+                    <br />
+                    <h1 class=" text-center">@ViewBag.ProductosVendidos</h1>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row  col-12">
+            <div class="card col-md-6 col-sm-12 ">
+                <div class="card-body ">
+                    <table class="table table-responsive">
+
+                    <tr>
+                        @{
+
+
+                            foreach (var v in ViewBag.TopVentas)
+                            {
+                               
+                                    for (int i = 1; i <= 3; i++)
+                                    {
+                                        <td>
+                                            Venta #@i
+                                            <br />
+                                            <hr />
+                                            Tienda: @v.IdTienda <br />
+                                            Fecha: @v.FechaVenta
+                                            Producto:  @v.IdProducto
+                                            Cantidad: @v.Cantidad
+                                            Subtotal: $ @v.SubTotal
+                                            <hr />
+                                            Total: $ @v.Total;
+
+                                        </td>
+
+                                    }
+                              
+                            }
+                        }
+                    </tr>
+                    </table>
+
+
+
+                    <h3 class="text-center card-title col-12">Top Ventas</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /#page-content-wrapper -->
